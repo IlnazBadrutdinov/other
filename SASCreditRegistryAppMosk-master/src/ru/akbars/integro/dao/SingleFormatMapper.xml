@@ -1,0 +1,13 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ru.akbars.integro.dao.SingleFormatMapper">
+		
+	<update id="callOrclProcedure" statementType="CALLABLE">
+	    {CALL ak_cremosk_tools.CloneRowInTable(
+	    	#{creId, jdbcType=NUMERIC, mode=IN},
+	    	#{rtdmId, jdbcType=NUMERIC, mode=IN},
+	    	#{applicantId, jdbcType=VARCHAR, mode=IN},
+	    	#{integroMethod, jdbcType=VARCHAR, mode=IN}
+	    )}
+	</update>
+
+</mapper>

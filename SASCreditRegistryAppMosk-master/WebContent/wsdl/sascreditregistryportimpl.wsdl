@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SASCreditRegistryPortImplService" targetNamespace="http://creapp.integro.akbars.ru/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://creapp.integro.akbars.ru/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+<import namespace="http://creapp.integro.akbars.ru/" schemaLocation="sascreditregistryportimpl_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="executeRequestResponse">
+    <wsdl:part name="parameters" element="tns:executeRequestResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeRequest">
+    <wsdl:part name="parameters" element="tns:executeRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SASCreditRegistryPort">
+    <wsdl:operation name="executeRequest">
+      <wsdl:input name="executeRequest" message="tns:executeRequest">
+    </wsdl:input>
+      <wsdl:output name="executeRequestResponse" message="tns:executeRequestResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SASCreditRegistryPortImplServiceSoapBinding" type="tns:SASCreditRegistryPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="executeRequest">
+      <soap:operation soapAction="urn:ExecuteRequest" style="document"/>
+      <wsdl:input name="executeRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="executeRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SASCreditRegistryPortImplService">
+    <wsdl:port name="SASCreditRegistryPortImplPort" binding="tns:SASCreditRegistryPortImplServiceSoapBinding">
+      <soap:address location="http://localhost:8080/SASCreditRegistryApp/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="database.properties"> <!--ссылка на файл со свойствами(ссылка на СУБД, логин, пароль и тп.) -->
+	</properties>
+	<settings><!--в данном блоке можно настроить много параметров. -->
+		<setting name="logImpl" value="SLF4J" />
+	</settings>
+
+	<environments default="development"><!--в данном блоке настраиваются подключения 
+			к БД -->
+		<environment id="office">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${alldb.driver}" />
+				<property name="url" value="${offdb.url}" />
+				<property name="username" value="${offdb.username}" />
+				<property name="password" value="${offdb.password}" />
+				
+				<!-- 18.02.2019: Xaidar: Добавил, чтобы убрать ошибку "java.sql.SQLException: Error accessing PooledConnection. Connection is invalid" -->
+				<property name="poolMaximumActiveConnections" value="100"/>
+				
+			</dataSource>
+		</environment>
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${alldb.driver}" />
+				<property name="url" value="${devdb.url}" />
+				<property name="username" value="${devdb.username}" />
+				<property name="password" value="${devdb.password}" />
+				
+				<!-- 18.02.2019: Xaidar: Добавил, чтобы убрать ошибку "java.sql.SQLException: Error accessing PooledConnection. Connection is invalid" -->
+				<property name="poolMaximumActiveConnections" value="100"/>
+				
+			</dataSource>
+		</environment>
+		<environment id="production">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${alldb.driver}" />
+				<property name="url" value="${proddb.url}" />
+				<property name="username" value="${proddb.username}" />
+				<property name="password" value="${proddb.password}" />
+				
+				<!-- 18.02.2019: Xaidar: Добавил, чтобы убрать ошибку "java.sql.SQLException: Error accessing PooledConnection. Connection is invalid" -->
+				<property name="poolMaximumActiveConnections" value="100"/>
+				
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers><!--в данном блоке необходимо описать маперы, которые используются 
+			в проекте -->
+		<mapper class="ru.akbars.integro.dao.SingleFormatMapper" />
+	</mappers>
+</configuration>
